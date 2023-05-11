@@ -24,13 +24,11 @@ class Solver:
             # Load batch data
             inputs, labels = data[0].cuda(), data[1].cuda()
 
-
-
             # Feed-forward
             self.optimizer.zero_grad()
+
             outputs = self.net(inputs)
             loss = self.criterion(outputs, labels)
-
 
             # Backward
             loss.backward()
@@ -99,10 +97,9 @@ class Solver:
             createFolder(os.path.join(self.args.save_path, "checkpoint"))
             if epoch % 50 == 0:
                 torch.save({
-                    'epoch': epoch,
-                    'net_state_dict': self.net.state_dict(),
-                    'optimizer_state_dict': self.optimizer.state_dict(),
-                    'scheduler_state_dict': self.scheduler.state_dict() if self.scheduler else None
+                'epoch': epoch, 'net_state_dict': self.net.state_dict(),
+                'optimizer_state_dict': self.optimizer.state_dict(),
+                'scheduler_state_dict': self.scheduler.state_dict() if self.scheduler else None
                 }, os.path.join(self.args.save_path, f"checkpoint/{epoch}.tar"))
                 write_json(os.path.join(self.args.save_path, "log_dict.json"), self.log_dict)
 

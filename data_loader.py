@@ -1,32 +1,3 @@
-
-#class CustomDataset(Dataset):
-#   def __init__(self, args):
-#        self.args = args
-#        self.load_data()
-#        self.torch_form()
-
-#    def load_data(self):
-#        s = self.args.train_subject[0]
-#        if self.args.phase == 'train':
-#            self.X = np.load(f"./data/S{s:02}_train_X.npy")
-#            self.y = np.load(f"./data/S{s:02}_train_y.npy")
-#        else:
-#            self.X = np.load(f"./data/S{s:02}_test_X.npy")
-#            self.y = np.load(f"./answer/S{s:02}_y_test.npy")
-#        if len(self.X.shape) <= 3:
-#            self.X = np.expand_dims(self.X, axis=1)
-
-#    def torch_form(self):
-#        self.X = torch.FloatTensor(self.X)
-#        self.y = torch.LongTensor(self.y)
-
-#    def __len__(self):
-#        return len(self.X)
-
-#    def __getitem__(self, idx):
-#        sample = [self.X[idx], self.y[idx]]
-#        return sample
-
 import numpy as np
 import torch
 from torch.utils.data import Dataset, random_split
@@ -58,7 +29,7 @@ class CustomDataset(Dataset):
             if len(Xtr.shape) <= 3:
                 Xtr = np.expand_dims(Xtr, axis=1)
             if len(Xts.shape) <= 3:
-                Xtr = np.expand_dims(Xtr, axis=1)
+                Xts = np.expand_dims(Xts, axis=1)
 
             X_tmp = np.concatenate((Xtr,  Xts), axis=0)
             y_tmp = np.concatenate((ytr,  yts), axis=0)

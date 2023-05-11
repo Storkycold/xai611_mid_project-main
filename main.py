@@ -12,7 +12,7 @@ def main():
     # seed control
     if args.seed:
         control_random(args)
-
+    
     # load train / test dataset
     train_loader, val_loader = data_loader(args)
 
