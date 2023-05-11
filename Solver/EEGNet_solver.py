@@ -29,7 +29,8 @@ class Solver:
 
             outputs = self.net(inputs)
             loss = self.criterion(outputs, labels)
-
+            #
+            #
             # Backward
             loss.backward()
             self.optimizer.step()
@@ -54,11 +55,12 @@ class Solver:
             for i, data in enumerate(self.val_loader):
                 # Load batch data
                 inputs, labels = data[0].cuda(), data[1].cuda()
-
+                
                 # Feed-forward
                 outputs = self.net(inputs)
                 loss = self.criterion(outputs, labels)
-
+                #
+                #
                 # Calculate log
                 cal_log(log_tmp, outputs=outputs, labels=labels, loss=loss)
 

@@ -102,11 +102,11 @@ class DANN(nn.Module):
         # Feature extraction
         out = self.feature_extractor(x)
         # out.size(0): batch_size 
-        out = out.view(out.size(0), -1)
+        out = out.view(out.shape(0), -1)
+        reverse_out = GradReverse.apply(out, alpha)
         # label_classifier
         class_output = self.label_classifier(out)
         # domain_classifier
-        reverse_out = GradReverse.apply(out, alpha)
         domain_output = self.domain_classifier(reverse_out)
 
         return class_output, domain_output
